@@ -7,8 +7,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "FeatureFiles/login.feature",
-		glue={"StepDefinitions.loginSteps"},
+		features = "FeatureFiles",
+		glue="StepDefinitions",
 		tags={"@login"} 
 		
 		)

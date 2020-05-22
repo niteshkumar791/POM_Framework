@@ -33,19 +33,19 @@ public class CommonActions {
 		return Configpro;
 	}
    
-   public  String GetScreenshot(WebDriver driver,String stepname) throws Exception {
+   public String GetScreenshot(WebDriver driver, String stepname) throws IOException {
+   
 	   
 	   TakesScreenshot ts= (TakesScreenshot)driver;
 	   File screenshotSRC= ts.getScreenshotAs(OutputType.FILE); // capturing screen shot as output type file
-	   	   
-	   Properties configpro = ReadConfigProperty();
-
-	   String path =  configpro.getProperty("ScreenshotPath")+"/ScreenCapturesPNG/"+stepname+".png";   //Defining path and extension of image
+	   
+	   //Properties configpro = ReadConfigProperty();
+	   String path =  System.getProperty("G:\\JAVA videos\\Snap")+"/ScreenCaptures/"+stepname+".png";   //Defining path and extension of image
 	  
-	   System.out.println("Path is " + path);
 	   File screenshotDest= new File(path);
 	   
 	   FileUtils.copyFile(screenshotSRC, screenshotDest);
+	   
 	   
 	   return path;
 	   

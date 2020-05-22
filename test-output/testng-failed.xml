@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite (0)]">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
   <test name="Test(failed)">
     <parameter name="url" value="https://opensource-demo.orangehrmlive.com/"/>
     <parameter name="Browser" value="chrome"/>
@@ -8,13 +8,13 @@
       <class name="FuntionalTestCases.Sprint_1">
         <methods>
           <include name="CloseBrowser"/>
-          <include name="TC01"/>
           <include name="startReport"/>
           <include name="endReport"/>
+          <include name="TC04"/>
           <include name="LaunchBrowser"/>
           <include name="getResult"/>
         </methods>
       </class> <!-- FuntionalTestCases.Sprint_1 -->
     </classes>
   </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite (0)] -->
+</suite> <!-- Failed suite [Suite] -->

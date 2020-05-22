@@ -8,9 +8,9 @@
       <class name="FuntionalTestCases.Sprint_1">
         <methods>
           <include name="CloseBrowser"/>
-          <include name="TC01"/>
           <include name="startReport"/>
           <include name="endReport"/>
+          <include name="TC04"/>
           <include name="LaunchBrowser"/>
           <include name="getResult"/>
         </methods>

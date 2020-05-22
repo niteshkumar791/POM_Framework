@@ -19,7 +19,7 @@ import Utility.CommonActions;
 
 public class Sprint_1 extends Base {
 	
-	@Test(priority=1,description="Login",enabled=true)
+	@Test(priority=1,description="Login",enabled=false)
 	public void TC01() throws IOException {
 		
 		logger = extent.createTest("HRM_Login");
@@ -34,7 +34,8 @@ public class Sprint_1 extends Base {
 		obj.Login_btn_click();
 		
 		logger.log(Status.INFO,"Checking for Successful Login ");				
-		Assert.assertFalse(obj.validate_Login());
+		Assert.assertTrue(obj.validate_Login());
+		//Assert.assertFalse(obj.validate_Login());
 		
 		logger.log(Status.INFO,"Successful Logout ");
 		obj.logOut();
@@ -53,6 +54,8 @@ public class Sprint_1 extends Base {
 		Login obj = new Login(driver,logger);
 		obj.do_login(pro.getProperty("username"),pro.getProperty("password"));
 		
+		obj.Login_btn_click();
+		
 		logger.log(Status.INFO,"Opening Users");
 		UserManagement obj1 = new UserManagement(driver, logger);
 		obj1.clickAdmin();
@@ -69,7 +72,7 @@ public class Sprint_1 extends Base {
 		Assert.assertTrue(obj1.validate_search_user("Admin"));
 		
 		logger.log(Status.INFO,"Successful Logout ");
-		obj.logOut();
+		//obj.logOut();
 		
 	}
 	
@@ -84,6 +87,7 @@ public class Sprint_1 extends Base {
 		Login login_obj = new Login(driver,logger);
 		login_obj.do_login(pro.getProperty("username"),pro.getProperty("password"));
 		
+		login_obj.Login_btn_click();
 		
 		logger.log(Status.INFO,"Opening KPI page");
 		KPI kpi_obj = new KPI(driver, logger);
@@ -107,7 +111,7 @@ public class Sprint_1 extends Base {
 		login_obj.logOut();
 	}
 	
-	@Test(priority=4,description="Add Recruitment Vacancy",enabled=false)
+	@Test(priority=4,description="Add Recruitment Vacancy",enabled=true)
 	public void TC04() {
 		
 		logger = extent.createTest("Add Recruitment Vacancies");
@@ -115,6 +119,8 @@ public class Sprint_1 extends Base {
 		logger.log(Status.INFO, "Entering login credentials");
 		Login login_obj = new Login(driver,logger);
 		login_obj.do_login("Admin", "admin123");
+		
+		login_obj.Login_btn_click();
 		
 		logger.log(Status.INFO, "Opening Recruitment vacancies");
 		Recruitment_vacancy vac_obj = new Recruitment_vacancy(driver);
@@ -140,6 +146,8 @@ public class Sprint_1 extends Base {
 		logger.log(Status.INFO, "Login by username & password");
 		Login login_obj = new Login(driver, logger);
 		login_obj.do_login(pro.getProperty("username"), pro.getProperty("password"));
+		
+		login_obj.Login_btn_click();
 		
 		Leave leave_obj = new Leave(driver, logger);
 		logger.log(Status.INFO, "Opening Add Entitlements");
@@ -175,6 +183,7 @@ public class Sprint_1 extends Base {
 		Login login_obj = new Login(driver, logger);
 		login_obj.do_login(pro.getProperty("username"), pro.getProperty("password"));
 		
+		login_obj.Login_btn_click();
 		
 		Leave leave_obj = new Leave(driver, logger);
 		logger.log(Status.INFO, "Opening Assign Leave page");

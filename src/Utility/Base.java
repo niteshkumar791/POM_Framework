@@ -18,6 +18,7 @@ import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
@@ -80,10 +81,10 @@ public class Base {
 	
 	
 	 @AfterMethod
-	 public void getResult(ITestResult result) throws Exception{
+	 public void getResult(ITestResult result) throws IOException  {
 		 
 		 CommonActions act = new CommonActions();
-		 String screenshotpath = act.GetScreenshot(driver, "my_snap");
+		 String screenshotpath = act.GetScreenshot(driver, "LoginErrorSnap");
 
 	     if(result.getStatus() == ITestResult.SUCCESS) {
 
@@ -91,9 +92,10 @@ public class Base {
 	     }
 	    if(result.getStatus() == ITestResult.FAILURE){
 	    
-	    logger.log(Status.FAIL, "Snapshot below: " + logger.addScreenCaptureFromPath(screenshotpath));
-	    logger.log(Status.FAIL, "Test Case Failed is	"+result.getName());
-	    logger.log(Status.FAIL, "Test Case Failed is"+result.getThrowable());
+	    logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotpath).build());
+	    //logger.log(Status.FAIL, "Snapshot below: " + logger.addScreenCaptureFromPath(screenshotpath));
+	    //logger.log(Status.FAIL, "Test Case Failed is	"+result.getName());
+	    //logger.log(Status.FAIL, "Test Case Failed is"+result.getThrowable());
 	      
 	      
 	     }
