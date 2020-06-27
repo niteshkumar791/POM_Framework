@@ -130,7 +130,7 @@ public class Sprint_1 extends Base {
 		vac_obj.AddVacancies("IT Executive", "Software Associate", "Linda Anderson", "1", "Selenium");
 		
 		logger.log(Status.INFO, "Validating Vacancy requiremnts info");		
-		Assert.assertFalse(vac_obj.Validate_Add_Vacancy());
+		Assert.assertTrue(vac_obj.Validate_Add_Vacancy());
 		
 		logger.log(Status.INFO,"Successful Logout ");
 		login_obj.logOut();

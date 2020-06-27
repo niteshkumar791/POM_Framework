@@ -79,7 +79,6 @@ public class Base {
 	}
 
 	
-	
 	 @AfterMethod
 	 public void getResult(ITestResult result) throws IOException  {
 		 
@@ -91,10 +90,11 @@ public class Base {
 	      logger.log(Status.PASS, "Test Case Passed " + result.getName());
 	     }
 	    if(result.getStatus() == ITestResult.FAILURE){
-	    
-	    logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotpath).build());
-	    //logger.log(Status.FAIL, "Snapshot below: " + logger.addScreenCaptureFromPath(screenshotpath));
 	    //logger.log(Status.FAIL, "Test Case Failed is	"+result.getName());
+	   // logger.fail(result.getThrowable());
+	    logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotpath).build());
+	    logger.log(Status.FAIL, "Snapshot below: " + logger.addScreenCaptureFromPath(screenshotpath));
+	   
 	    //logger.log(Status.FAIL, "Test Case Failed is"+result.getThrowable());
 	      
 	      
@@ -109,7 +109,7 @@ public class Base {
 	
 	@AfterMethod
 	public void CloseBrowser() {
-		driver.close();
+		//driver.close();
 	}
 	
 	

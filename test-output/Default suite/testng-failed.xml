@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite (0)]">
-  <test name="Test(failed)">
-    <parameter name="url" value="https://opensource-demo.orangehrmlive.com/"/>
-    <parameter name="Browser" value="chrome"/>
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
       <class name="FuntionalTestCases.Sprint_1">
         <methods>
@@ -16,5 +14,5 @@
         </methods>
       </class> <!-- FuntionalTestCases.Sprint_1 -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite (0)] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
