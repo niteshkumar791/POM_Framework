@@ -7,13 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-import com.aventstack.extentreports.ExtentTest;
+
 import com.aventstack.extentreports.Status;
 
+import Utility.Base;
 import Utility.WaitHelper;
 
 
-public class Login {
+public class Login extends Base {
 	
 	//Object repository	
 	@FindBy(id="txtUsername")
@@ -25,7 +26,7 @@ public class Login {
 	@FindBy(id="btnLogin")
 	WebElement Login_Btn_id;
 	
-	@FindBy(linkText="Welcome Admin")
+	@FindBy(xpath="//a[@id='welcome']")
 	WebElement Welcome_Admin_linktxt;
 	
 	@FindBy(linkText="Logout")
@@ -35,13 +36,10 @@ public class Login {
 	WebElement head;
 	
 	WaitHelper wait;
-	WebDriver driver;
-	ExtentTest logger;
+	
 	
 	//parameterized constructor
-	public Login(WebDriver driver, ExtentTest logger) {	
-		this.driver = driver;
-		this.logger = logger;
+	public Login(WebDriver driver) {	
 		PageFactory.initElements(driver, this);
 		wait = new WaitHelper(driver);
 	}
@@ -85,8 +83,3 @@ public class Login {
 			return false;
 		}	
 	}
-	
-	
-	
-
-

@@ -35,20 +35,20 @@ public void user_opens_the_HRM_browser_and_url(String browser, String Url) throw
 @Then("^user send username \"([^\"]*)\" and password \"([^\"]*)\"$")
 public void user_send_username_and_password(String username, String Password) throws Throwable {
 	 logger = extent.createTest("HRM_Login");	 
-	 login_obj = new Login(driver, logger);
+	 login_obj = new Login(driver);
 	 login_obj.do_login(username, Password); 
 }
 
 @Then("^user click on login button$")
 public void user_click_on_login_button() throws Throwable {
-	login_obj = new Login(driver, logger);
+	login_obj = new Login(driver);
     login_obj.Login_btn_click(); 
 }
 
 @Then("^validate the outcome$")
 public void validate_the_outcome() throws Throwable {	
 	driver.navigate().back();
-	login_obj = new Login(driver, logger);
+	login_obj = new Login(driver);
 	login_obj.validate_Login();  
 }
 

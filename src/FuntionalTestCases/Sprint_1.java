@@ -19,8 +19,8 @@ import Utility.CommonActions;
 
 public class Sprint_1 extends Base {
 	
-	@Test(priority=1,description="Login",enabled=false)
-	public void TC01() throws IOException {
+	@Test(priority=1,description="Login",enabled=true)
+	public void Login() throws IOException {
 		
 		logger = extent.createTest("HRM_Login");
 		
@@ -28,13 +28,14 @@ public class Sprint_1 extends Base {
 		Properties pro = action.ReadDataProperty(); // calling method from Commonaction class and saving it in properties obj
 				
 		logger.log(Status.INFO,"Entering credentials");
-		Login obj = new Login(driver,logger);
+		Login obj = new Login(driver);
 		obj.do_login(pro.getProperty("username"),pro.getProperty("password"));
 		
 		obj.Login_btn_click();
 		
+		
 		logger.log(Status.INFO,"Checking for Successful Login ");				
-		Assert.assertTrue(obj.validate_Login());
+		Assert.assertFalse(obj.validate_Login());
 		//Assert.assertFalse(obj.validate_Login());
 		
 		logger.log(Status.INFO,"Successful Logout ");
@@ -51,7 +52,7 @@ public class Sprint_1 extends Base {
 		logger = extent.createTest("Search UserName in User_Management");
 		
 		logger.log(Status.INFO,"Entering credentials");
-		Login obj = new Login(driver,logger);
+		Login obj = new Login(driver);
 		obj.do_login(pro.getProperty("username"),pro.getProperty("password"));
 		
 		obj.Login_btn_click();
@@ -70,6 +71,7 @@ public class Sprint_1 extends Base {
 		
 		logger.log(Status.INFO,"Validating username");
 		Assert.assertTrue(obj1.validate_search_user("Admin"));
+	
 		
 		logger.log(Status.INFO,"Successful Logout ");
 		//obj.logOut();
@@ -84,7 +86,7 @@ public class Sprint_1 extends Base {
 		logger = extent.createTest("Add Key Performance Indicator");
 		
 		logger.log(Status.INFO,"Entering login credentials");
-		Login login_obj = new Login(driver,logger);
+		Login login_obj = new Login(driver);
 		login_obj.do_login(pro.getProperty("username"),pro.getProperty("password"));
 		
 		login_obj.Login_btn_click();
@@ -111,13 +113,13 @@ public class Sprint_1 extends Base {
 		login_obj.logOut();
 	}
 	
-	@Test(priority=4,description="Add Recruitment Vacancy",enabled=true)
+	@Test(priority=4,description="Add Recruitment Vacancy",enabled=false)
 	public void TC04() {
 		
 		logger = extent.createTest("Add Recruitment Vacancies");
 		
 		logger.log(Status.INFO, "Entering login credentials");
-		Login login_obj = new Login(driver,logger);
+		Login login_obj = new Login(driver);
 		login_obj.do_login("Admin", "admin123");
 		
 		login_obj.Login_btn_click();
@@ -144,7 +146,7 @@ public class Sprint_1 extends Base {
 		Properties pro =  act.ReadDataProperty();
 		
 		logger.log(Status.INFO, "Login by username & password");
-		Login login_obj = new Login(driver, logger);
+		Login login_obj = new Login(driver);
 		login_obj.do_login(pro.getProperty("username"), pro.getProperty("password"));
 		
 		login_obj.Login_btn_click();
@@ -180,7 +182,7 @@ public class Sprint_1 extends Base {
 		Properties pro =  act.ReadDataProperty();
 		
 		logger.log(Status.INFO, "Login by username & password");
-		Login login_obj = new Login(driver, logger);
+		Login login_obj = new Login(driver);
 		login_obj.do_login(pro.getProperty("username"), pro.getProperty("password"));
 		
 		login_obj.Login_btn_click();

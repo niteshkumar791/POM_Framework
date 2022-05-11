@@ -89,10 +89,10 @@ public class Base {
 
 	      logger.log(Status.PASS, "Test Case Passed " + result.getName());
 	     }
-	    if(result.getStatus() == ITestResult.FAILURE){
-	    //logger.log(Status.FAIL, "Test Case Failed is	"+result.getName());
-	   // logger.fail(result.getThrowable());
-	    logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotpath).build());
+	     else if(result.getStatus() == ITestResult.FAILURE){
+	         //logger.log(Status.FAIL, "Test Case Failed is	"+result.getName());
+	        // logger.fail(result.getThrowable());
+	       //logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotpath).build());
 	    logger.log(Status.FAIL, "Snapshot below: " + logger.addScreenCaptureFromPath(screenshotpath));
 	   
 	    //logger.log(Status.FAIL, "Test Case Failed is"+result.getThrowable());
@@ -113,9 +113,12 @@ public class Base {
 	}
 	
 	
+	
+	
 	@AfterSuite
     public void endReport(){
          extent.flush();
+         driver.close();
          //extent.close();
       }
 

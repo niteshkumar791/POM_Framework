@@ -19,7 +19,6 @@ import Utility.WaitHelper;
 public class UserManagement {
 	
 	//Object repository	
-	WebDriver driver;
 	
 	@FindBy(linkText="Admin")
 	WebElement Admin_linkText;
@@ -51,6 +50,7 @@ public class UserManagement {
 	WaitHelper wait;
 	ExtentTest logger;
 	Actions act;
+	WebDriver driver;
 	
 	
 	//parameterized constructor

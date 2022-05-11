@@ -3,6 +3,7 @@ package Utility;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -18,76 +19,76 @@ import org.openqa.selenium.WebDriver;
 
 public class CommonActions {
 
-	public  Properties ReadDataProperty() throws IOException {
+	public Properties ReadDataProperty() throws IOException {
 
 		FileInputStream file = new FileInputStream(new File("Data.properties")); // can give path
 
 		Properties datapro = new Properties();
 		datapro.load(file);
+		System.out.println(datapro.getProperty("ChromeKey"));
 
 		return datapro;
 	}
 
 	public Properties ReadConfigProperty() throws IOException {
 
-		//FileInputStream file = new FileInputStream(new File("config.properties"));
+		// FileInputStream file = new FileInputStream(new File("config.properties"));
 
-		Properties Configpro = new Properties();
-		Configpro.load(new FileInputStream(new File("config.properties")));
+		Properties Config = new Properties();
+		Config.load(new FileInputStream(new File("config.properties")));
 
-		return Configpro;
+		return Config;
 	}
 
-	public String GetScreenshot(WebDriver driver, String stepname) throws IOException {	   
-		TakesScreenshot ts= (TakesScreenshot)driver;
-		File screenshotSRC= ts.getScreenshotAs(OutputType.FILE); // capturing screen shot as output type file
+	public String GetScreenshot(WebDriver driver, String stepname) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File screenshotSRC = ts.getScreenshotAs(OutputType.FILE); // capturing screen shot as output type file
 
 		Properties configpro = ReadConfigProperty();
-		String path = configpro.getProperty("ScreenshotPath")+"/ScreenCaptures/"+stepname+".png";   //Defining path and extension of image
+		String path = configpro.getProperty("ScreenshotPath") + "/ScreenCaptures/" + stepname + ".png"; // Defining path
+																										// and extension
+																										// of image
 
-		File screenshotDest= new File(path);	   
-		FileUtils.copyFile(screenshotSRC, screenshotDest);     
+		File screenshotDest = new File(path);
+		FileUtils.copyFile(screenshotSRC, screenshotDest);
 		return path;
 
 	}
 
+	public void ReadExcel(String filename, String sheetName) throws IOException {
 
+		// File obj1= new File(filename);
 
-	public void ReadExcel(String filename , String sheetName) throws IOException {
-
-		//File obj1= new File(filename);
-
-		FileInputStream file= new FileInputStream(new File(filename));
+		FileInputStream file = new FileInputStream(new File(filename));
 
 		// check extension & create Workbook object
-		Workbook obj= null;
+		Workbook workbook = null;
 
-		String extension= filename.substring(filename.indexOf("."));
+		String extension = filename.substring(filename.indexOf("."));
 
-		if(extension.equals(".xls")) {
-			obj = new HSSFWorkbook(file);
-		}
-		else if(extension.equals(".xlsx")) {
-			obj = new XSSFWorkbook(file);
+		if (extension.equals(".xls")) {
+			workbook = new HSSFWorkbook(file);
+		} else if (extension.equals(".xlsx")) {
+			workbook = new XSSFWorkbook(file);
 		}
 
 		// get sheet object
-		Sheet sheet= obj.getSheet(sheetName);
+		Sheet sheet = workbook.getSheet(sheetName);
 
-		int rowCount= sheet.getLastRowNum()- sheet.getFirstRowNum();
+		int rowCount = sheet.getLastRowNum();
 
-		for(int i=0; i<rowCount+1; i++) {
-			Row row= sheet.getRow(i);
-			for(int j=0; j<row.getLastCellNum();j++) {
-				if(row.getCell(j) != null) {
-					if(Cell.CELL_TYPE_STRING==row.getCell(j).getCellType()) {
-						System.out.print(row.getCell(j).getStringCellValue()+"|| ");
-					}
-					else if (Cell.CELL_TYPE_NUMERIC==row.getCell(j).getCellType()){
-						System.out.print(row.getCell(j).getNumericCellValue()+"|| ");
+		for (int i = 0; i <=rowCount; i++) {
+			Row row = sheet.getRow(i);
+			for (int j = 0; j < row.getLastCellNum(); j++) {
+				if (row.getCell(j) != null) {
+					if (Cell.CELL_TYPE_STRING == row.getCell(j).getCellType()) {
+						System.out.print(row.getCell(j).getStringCellValue() + "|| ");
+					} else if (Cell.CELL_TYPE_NUMERIC == row.getCell(j).getCellType()) {
+						System.out.print(row.getCell(j).getNumericCellValue() + "|| ");
 					}
 				}
 			}
 		}
 	}
-} 
+
+}

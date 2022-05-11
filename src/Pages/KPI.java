@@ -93,6 +93,7 @@ public class KPI {
 		wait.WaitforVisibilityof(selectJobTitle_CSS, 20);
 		logger.log(Status.INFO, "Selecting Job Title");
 		Select Select_Job_Title = new Select(selectJobTitle_CSS); //selecting Jobtitle from dropdown
+		
 		if (JobTitle.equalsIgnoreCase("Sales Manager")) {
 			Select_Job_Title.selectByValue("1");
 			}
